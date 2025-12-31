@@ -1,4 +1,8 @@
+import { useRouter } from "next/router";
+
 export default function Home() {
+  const router = useRouter();
+
   const payNow = async () => {
     // 1️⃣ Call backend to create order
     const res = await fetch("/api/create-order", {
@@ -28,7 +32,7 @@ export default function Home() {
         const result = await verify.json();
 
         if (result.success) {
-          alert("Payment Successful 🎉");
+          router.push("/success");
         } else {
           alert("Payment Failed ❌");
         }
